@@ -4,8 +4,10 @@ When you use refactoring tools in curly-bracketed languages, the tools use *stat
 
 > Who calls this method? Is it even used anymore?
 
-This makes confidently removing dead code a breeze. In Ruby, this is not so easy, because the only way to really know how a 
-Ruby program works is to watch it run.
+This particular bit of information makes confidently removing dead code a breeze, but there's a lot more you can learn 
+from static analysis too.
+
+In Ruby, this is not so easy, because the only way to really know how a Ruby program works is to watch it run.
 
 DARTS watches (using code coverage tools) as you run your test suite, doing *dynamic analysis* to build a model of how your 
 code fits together. With this information, we can also answer questions like:
