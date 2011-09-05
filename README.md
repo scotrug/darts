@@ -14,7 +14,7 @@ code fits together. With this information, we can also answer questions like:
   
 > If I change this code, which tests do I need to run?
 
-When you practice test-driven-development, you konw that every line of code you write has at least one test that 
+When you practice test-driven-development, you know that every line of code you write has at least one test that 
 covers it, but which one? Darts can tell you.
 
 ## Status
