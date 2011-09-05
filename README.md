@@ -1,4 +1,4 @@
-# DARTS (Dynamic Analysys from Ruby Tests)
+# Darts :: Dynamic Analysis from Ruby Tests
 
 When you use refactoring tools in curly-bracketed languages, the tools use *static analysis* to answer questions like:
 
@@ -15,8 +15,8 @@ code fits together. With this information, we can also answer questions like:
 > If I change this code, which tests do I need to run?
 
 When you practice test-driven-development, you konw that every line of code you write has at least one test that 
-covers it, but which one? DARTS can tell you the answer.
+covers it, but which one? Darts can tell you.
 
 ## Status
 
-DARTS is no more than an idea at the moment. Would you like to help make it real?
+Darts is no more than an idea at the moment. Would you like to help make it real?
