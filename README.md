@@ -17,6 +17,21 @@ code fits together. With this information, we can also answer questions like:
 When you practice test-driven-development, you know that every line of code you write has at least one test that 
 covers it, but which one? Darts can tell you.
 
-## Status
+## Usage
 
-Darts is no more than an idea at the moment. Would you like to help make it real?
+Query darts from the command line, like this:
+
+    darts <filename>
+
+That will return a list of examples you need to run. So you can chain this with the `rspec` command, like this:
+
+    rspec `darts <filename>`
+
+### RSpec
+
+In your spec_helper, do this:
+
+    require 'darts/rspec'
+
+That will install darts' hooks to watch your code as the specs run.
+
