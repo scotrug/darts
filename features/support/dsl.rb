@@ -11,7 +11,8 @@ module Dsl
 $: << File.expand_path(File.dirname(__FILE__) + '/../../../lib')
 require 'darts/rspec'
 BODY
-    in_current_dir { `rspec` }
+    run_simple('rspec')
+    @processes = nil # this tells aruba to clean the slate for another command
   end
 
   def output_from_darts
