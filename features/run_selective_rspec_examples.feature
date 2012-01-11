@@ -2,10 +2,11 @@ Feature: Run selective RSpec examples
 
   Scenario:
     Given two classes, each with corresponding RSpec specs:
-      | wow.rb    |
-      | stable.rb |
+      | interesting.rb |
+      | stable.rb      |
     And Darts has watched the specs run once
-    When I modify "wow.rb"
+    When I modify "lib/interesting.rb"
     And I ask Darts which specs I should run
-    Then I should be told to just run the specs for "wow.rb"
+    Then I should be given this list:
+      | spec/interesting_spec.rb |
 

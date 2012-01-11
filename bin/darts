@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts 'stub'
+$: << File.expand_path(File.dirname(__FILE__) + '/../lib')
+require 'darts/cli'
+Darts::CLI.start

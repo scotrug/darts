@@ -15,7 +15,9 @@ Gem::Specification.new do |s|
   s.description = "Darts watches your tests run, and builds a map from test case to source code. Now, when you chance your source code, you can ask Darts which tests to run."
 
   s.required_rubygems_version = ">= 1.3.6"
-  ['rspec', 'cucumber'].each do |gem|
+  s.add_dependency "thor", "~> 0.14.6"
+
+  ['rspec', 'cucumber', 'aruba', 'activesupport', 'i18n'].each do |gem|
     s.add_development_dependency gem
   end
 
