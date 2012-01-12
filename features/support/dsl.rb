@@ -32,13 +32,13 @@ private
   end
 
   def class_content(filename)
-    %{
+    <<-BODY
 class #{class_name_for(filename)}
   def call
     "#{filename} was called"
   end
 end
-}
+    BODY
   end
 
   def class_name_for(filename)
@@ -46,7 +46,7 @@ end
   end
 
   def spec_content(filename)
-    %{
+    <<-BODY
 require 'spec_helper'
 require '#{filename}'
 
@@ -55,7 +55,7 @@ describe #{class_name_for(filename)} do
     subject.call.should == "#{filename} was called"
   end
 end
-}
+    BODY
   end
 
   def spec_name_for(filename)
