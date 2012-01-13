@@ -1,16 +1,21 @@
 require 'darts/mappings'
+require 'pathname'
 
 module Darts
   UnknownSourceFile = Class.new(StandardError)
 
   class SourceFile
     def initialize(path)
-      @path = path.gsub("#{Dir.pwd}/", '')
+      @path = Pathname.new(path).realpath
       @mappings = Darts.mappings
     end
 
     def tests
       @mappings.tests_for_source_file(self)
+    end
+    
+    def outside_pwd?
+      path =~ /^\.\./
     end
 
     def ==(other)
@@ -18,7 +23,7 @@ module Darts
     end
 
     def eql?(other)
-      other.path == self.path
+      other.path.to_s == path
     end
 
     def hash
@@ -26,10 +31,12 @@ module Darts
     end
 
     def to_s
-      "Source file: #{path}"
+      path
     end
 
-    attr_reader :path
+    def path
+      @path.relative_path_from(Pathname.new(Dir.pwd)).to_s
+    end
 
   end
 

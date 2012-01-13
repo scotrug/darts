@@ -1,7 +1,6 @@
 Feature: See specs for source file
 
-  Scenario:
-    Note that this doesn't have a high fidelity yet: it just shows which file you need to run, rather than the actual examples within it.
+  Scenario: Find a single spec
 
     Given two classes, each with corresponding RSpec specs:
       | interesting.rb |

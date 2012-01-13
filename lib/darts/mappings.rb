@@ -3,18 +3,16 @@ require 'darts/rspec/test_case'
 module Darts
   class Mappings
     KeyError = IndexError if RUBY_VERSION < "1.9"
-    
-    def initialize
-      warn(caller[0])
-    end
 
     def tests_for_source_file(source_file)
       state.fetch(source_file)
     rescue KeyError => error
-      raise UnknownSourceFile, "No mapping exists for #{source_file}.\n#{self}", error.backtrace
+      raise UnknownSourceFile, "No mapping exists for '#{source_file}'.\n#{self}", error.backtrace
     end
 
-    def store_coverage_for_test_case(test_case, source_files)
+    def store_coverage_for_test_case(test_case, source_file_paths)
+      source_files = source_file_paths.map { |path| SourceFile.new(path) }
+      source_files.reject! { |source_file| source_file.outside_pwd? }
       source_files.each do |source_file|
         state[source_file] ||= []
         state[source_file] << test_case
@@ -25,16 +23,20 @@ module Darts
       Store.save(state)
     end
     
-    def to_s
-      result = ["Mappings from #{Store.data_file_path}:\n"]
+    def print
+      yield "Mappings from #{Store.data_file_path}:"
       state.each do |source_file, test_cases|
-        result << "#{source_file.path}"
+        yield "#{source_file}"
         test_cases.each do |test_case|
-          result << "  #{test_case}"
+          yield "  #{test_case}"
         end
-        result << ''
       end
-      result.join("\n")
+    end
+    
+    def to_s
+      lines = []
+      print { |line| lines << line }
+      lines.join("\n")
     end
 
     private

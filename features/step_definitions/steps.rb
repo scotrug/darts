@@ -29,5 +29,5 @@ Then /^I should be given this list:$/ do |table|
 end
 
 Then /^I should see:$/ do |string|
-  output_from_darts.should == string
+  output_from_darts.should =~ Regexp.new(string)
 end

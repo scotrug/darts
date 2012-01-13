@@ -19,10 +19,11 @@ module Darts
       end
 
     private
+
       def coverage_result
         result = []
         Coverage.result.each do |file, line_counts|
-          result << SourceFile.new(file)
+          result << file
         end
         result
       end

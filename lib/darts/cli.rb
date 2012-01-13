@@ -33,7 +33,7 @@ MESSAGE
     
     desc "mappings", "Shows the mappings that Darts has stored."
     def mappings
-      say Darts.mappings.to_s
+      Darts.mappings.print { |line| say(line) }
     end
   end
 end

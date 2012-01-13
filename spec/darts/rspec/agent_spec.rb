@@ -13,7 +13,7 @@ module Darts
       end
 
       describe "#after_each" do
-        let(:source_file) { SourceFile.new('foo.rb') }
+        let(:source_file) { stub(:path => '/path/to/foo.rb') }
         let(:raw_coverage_result) do
           { source_file.path => [1, 1, nil] }
         end
@@ -26,7 +26,7 @@ module Darts
           TestCase.stub(:new).
             with(example.location).
             and_return(test_case)
-          test_case.should_receive(:store_coverage).with([SourceFile.new('foo.rb')])
+          test_case.should_receive(:store_coverage).with([source_file.path])
           subject.after_each example
         end
       end

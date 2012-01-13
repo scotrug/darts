@@ -1,6 +1,6 @@
 Feature: Show mappings
 
-  Scenario:
+  Scenario: Two source files, each with a spec
     Given two classes, each with corresponding RSpec specs:
       | interesting.rb |
       | stable.rb      |
@@ -9,8 +9,9 @@ Feature: Show mappings
     Then I should see:
       """
       lib/interesting.rb
-        spec/interesting_spec.rb
+        spec/interesting_spec.rb:5
       
       lib/stable.rb
-        spec/stable_spec.rb
+        spec/stable_spec.rb:5
       """
+
