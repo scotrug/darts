@@ -1,3 +1,4 @@
+require 'rubygems' if RUBY_VERSION < "1.9"
 require 'thor'
 require 'darts/query/tests_hitting_source_file'
 require 'darts/query/tests_that_need_running'

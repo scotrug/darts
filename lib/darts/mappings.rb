@@ -2,6 +2,7 @@ require 'darts/rspec/test_case'
 
 module Darts
   class Mappings
+    KeyError = IndexError if RUBY_VERSION < "1.9"
 
     def tests_for_source_file(source_file)
       state.fetch(source_file)
