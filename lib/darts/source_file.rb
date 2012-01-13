@@ -5,7 +5,7 @@ module Darts
 
   class SourceFile
     def initialize(path)
-      @path = path
+      @path = path.gsub("#{Dir.pwd}/", '')
       @mappings = Darts.mappings
     end
 

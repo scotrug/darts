@@ -30,5 +30,10 @@ MESSAGE
         say test
       end
     end
+    
+    desc "mappings", "Shows the mappings that Darts has stored."
+    def mappings
+      say Darts.mappings.to_s
+    end
   end
 end

@@ -45,6 +45,19 @@ module Darts
         Mappings.new.save
       end
     end
+    
+    describe "#to_s" do
+      it "shows the path where the mappings are stored" do
+        store.stub(:data_file_path).and_return 'path/to/.darts'
+        Mappings.new.to_s.should =~ /path\/to\/\.darts/
+      end
+      
+      it "shows each of the source files" do
+        state = { 'foo' => ['foo_spec', 'bar_spec'] }
+        store.stub(:load => state)
+        Mappings.new.to_s.should =~ /foo/
+      end
+    end
 
     describe Mappings::Store do
       it "can round-trip a ruby Hash" do

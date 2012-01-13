@@ -7,6 +7,6 @@ Feature: See specs for source file
       | interesting.rb |
       | stable.rb      |
     And Darts has watched the specs run once
-    When I ask Darts which specs touch "interesting.rb"
+    When I ask Darts which specs touch "lib/interesting.rb"
     Then I should be given this list:
-      | spec/interesting_spec.rb |
+      | spec/interesting_spec.rb:5 |

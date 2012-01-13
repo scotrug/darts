@@ -12,6 +12,10 @@ When /^I ask Darts which specs touch "([^"]*)"$/ do |source_file|
   darts :into, source_file
 end
 
+When /^I ask Darts to show the mappings$/ do
+  darts :mappings
+end
+
 When /^I modify "([^"]*)"$/ do |filename|
   touch(filename)
 end
@@ -22,4 +26,8 @@ end
 
 Then /^I should be given this list:$/ do |table|
   table.raw.flatten.should == output_from_darts.split("\n")
+end
+
+Then /^I should see:$/ do |string|
+  output_from_darts.should == string
 end
