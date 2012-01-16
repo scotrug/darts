@@ -4,3 +4,4 @@ coverage
 *.gem
 tmp
 .darts
+*.swp

@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "thor", "~> 0.14.6"
   s.add_dependency "rcov"
 
-  ['rspec', 'cucumber', 'aruba', 'activesupport', 'i18n', 'guard-rspec'].each do |gem|
+  ['rspec', 'cucumber', 'aruba', 'activesupport', 'i18n', 'guard-rspec', 'guard-cucumber', 'growl'].each do |gem|
     s.add_development_dependency gem
   end
 
