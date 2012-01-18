@@ -7,13 +7,8 @@ module Darts
   class SourceFile
     def initialize(path)
       @path = Pathname.new(path).realpath
-      @mappings = Darts.mappings
     end
 
-    def tests
-      @mappings.tests_for_source_file(self)
-    end
-    
     def outside_pwd?
       path =~ /^\.\./
     end

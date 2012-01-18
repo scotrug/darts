@@ -30,10 +30,11 @@ MESSAGE
         say test
       end
     end
-    
+
     desc "mappings", "Shows the mappings that Darts has stored."
     def mappings
       Darts.mappings.print { |line| say(line) }
     end
+
   end
 end

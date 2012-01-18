@@ -10,26 +10,20 @@ module Darts
         TestsHittingSourceFile.new(source_file_name)
       end
 
-      it "returns whatever tests the SourceFile says have hit it" do
-        tests = ['one_spec.rb', 'another_spec.rb']
-        source_file = stub(:tests => tests)
+      before do
         SourceFile.stub(:new => source_file)
-
-        results = []
-        TestsHittingSourceFile.new('whatever') { |test| results << test }
-        results.should == tests
+        Darts.stub(:mappings => mappings)
+        mappings.stub(:tests_for_source_file).with(source_file).and_return(tests)
       end
 
-      context "when the source file can't be found" do
-        before do
-          SourceFile.stub(:new).and_raise(UnknownSourceFile)
-        end
+      let(:source_file) { stub }
+      let(:mappings) { stub }
+      let(:tests) { stub }
 
-        it "raises the error up" do
-          expect { TestsHittingSourceFile.new('wrong') }.to raise_error(UnknownSourceFile)
-        end
-
+      it "returns whatever tests the SourceFile says have hit it" do
+        TestsHittingSourceFile.new(source_file).tests.should == tests
       end
+
     end
   end
 end

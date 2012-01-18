@@ -32,20 +32,6 @@ module Darts
       end
     end
 
-    describe "#tests" do
-      let(:mappings) { stub }
-
-      before do
-        Darts.stub(:mappings => mappings)
-      end
-
-      it "looks up the tests from the mappings" do
-        tests = stub
-        mappings.should_receive(:tests_for_source_file).with(subject).and_return(tests)
-        subject.tests.should == tests
-      end
-    end
-
     describe "#path" do
       it "returns the path, relative to the current working directory" do
         subject.path.should == 'lib/foo.rb'

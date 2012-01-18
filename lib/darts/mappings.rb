@@ -5,24 +5,26 @@ module Darts
     KeyError = IndexError if RUBY_VERSION < "1.9"
 
     def tests_for_source_file(source_file)
-      state.fetch(source_file)
-    rescue KeyError => error
-      raise UnknownSourceFile, "No mapping exists for '#{source_file}'.\n#{self}", error.backtrace
+      recordings = state.select do |test_case, source_files|
+        source_files.include?(source_file)
+      end
+      if recordings.empty?
+        raise UnknownSourceFile, "No mapping exists for '#{source_file}'.\n#{self}"
+      end
+      recordings.map { |test_case, source_files| test_case }
     end
 
     def store_coverage_for_test_case(test_case, source_file_paths)
       source_files = source_file_paths.map { |path| SourceFile.new(path) }
       source_files.reject! { |source_file| source_file.outside_pwd? }
-      source_files.each do |source_file|
-        state[source_file] ||= []
-        state[source_file] << test_case
-      end
+      source_files.reject! { |source_file| source_file.path == test_case.path }
+      state[test_case] = source_files
     end
 
     def save
       Store.save(state)
     end
-    
+
     def print
       yield "Mappings from #{Store.data_file_path}:"
       state.each do |source_file, test_cases|
@@ -32,7 +34,7 @@ module Darts
         end
       end
     end
-    
+
     def to_s
       lines = []
       print { |line| lines << line }
