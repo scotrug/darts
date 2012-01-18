@@ -7,7 +7,7 @@ module Darts
     let(:state) { {} }
     before { store.stub(:load => state) }
 
-    describe "#tests_for_source_file" do
+    describe "#tests_for_source_files" do
       let(:source_file) { stub }
       let(:test_case) { stub }
       let(:state) do
@@ -15,13 +15,13 @@ module Darts
       end
 
       it "returns an Array of TestCases" do
-        tests = subject.tests_for_source_file(source_file)
+        tests = subject.tests_for_source_files([source_file])
         tests.should be_kind_of(Array)
         tests.first.should == test_case
       end
 
       it "raises an error when the source file is unknown" do
-        expect { subject.tests_for_source_file(stub) }.to raise_error(UnknownSourceFile)
+        expect { subject.tests_for_source_files([stub]) }.to raise_error(UnknownSourceFile)
       end
 
     end

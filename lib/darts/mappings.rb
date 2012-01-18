@@ -1,15 +1,15 @@
 require 'darts/rspec/test_case'
 
 module Darts
-  class Mappings
-    KeyError = IndexError if RUBY_VERSION < "1.9"
 
-    def tests_for_source_file(source_file)
+  class Mappings
+
+    def tests_for_source_files(source_files_to_find)
       recordings = state.select do |test_case, source_files|
-        source_files.include?(source_file)
+        (source_files & source_files_to_find).any?
       end
       if recordings.empty?
-        raise UnknownSourceFile, "No mapping exists for '#{source_file}'.\n#{self}"
+        raise UnknownSourceFile, "No mappings exist for any of '#{source_files_to_find}'.\n#{self}"
       end
       recordings.map { |test_case, source_files| test_case }
     end

@@ -23,15 +23,19 @@ module Darts
 
     class TestsHittingSourceFile < Base
       def present_on(ui)
-        mappings.tests_for_source_file(source_file).each do |test|
+        mappings.tests_for_source_files(source_files).each do |test|
           ui.say test
         end
       end
 
       private
 
-      def source_file
-        @source_file = SourceFile.new(option(:source_file_path))
+      def source_files
+        @source_files = source_file_paths.map { |path| SourceFile.new(path) }
+      end
+
+      def source_file_paths
+        option(:source_file_paths).split(',')
       end
     end
 

@@ -16,10 +16,10 @@ MESSAGE
       super
     end
 
-    desc "into SOURCE_FILE_PATH", "Shows the tests that hit the given source file."
-    def into(source_file_path)
+    desc "into SOURCE_FILE_1[,SOURCE_FILE_2...]", "Shows the tests that hit the given source file."
+    def into(source_file_paths)
       present Presenters::TestsHittingSourceFile,
-        :source_file_path => source_file_path,
+        :source_file_paths => source_file_paths,
         :mappings => Mappings.new
     end
 
