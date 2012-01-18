@@ -16,14 +16,14 @@ MESSAGE
       super
     end
 
-    desc "into SOURCE_FILE_1[,SOURCE_FILE_2...]", "Shows the tests that hit the given source file."
+    desc "into SOURCE_FILE_1[,SOURCE_FILE_2...]", "Shows the tests that hit the given source file or files."
     def into(source_file_paths)
       present Presenters::TestsHittingSourceFile,
         :source_file_paths => source_file_paths,
         :mappings => Mappings.new
     end
 
-    desc "mappings", "Shows the mappings that Darts has stored."
+    desc "mappings", "Shows all the mappings that Darts has stored."
     def mappings
       present Presenters::Mappings,
         :mappings => Mappings.new
