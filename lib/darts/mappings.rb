@@ -14,7 +14,7 @@ module Darts
       recordings.map { |test_case, source_files| test_case }
     end
 
-    def store_coverage_for_test_case(test_case, source_file_paths)
+    def store_coverage(test_case, source_file_paths)
       source_files = source_file_paths.map { |path| SourceFile.new(path) }
       source_files.reject! { |source_file| source_file.outside_pwd? }
       source_files.reject! { |source_file| source_file.path == test_case.path }
@@ -68,7 +68,4 @@ module Darts
 
   end
 
-  def self.mappings
-    @mappings ||= Mappings.new
-  end
 end

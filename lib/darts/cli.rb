@@ -1,6 +1,7 @@
 require 'rubygems' if RUBY_VERSION < "1.9"
 require 'thor'
-require 'darts/query/tests_hitting_source_file'
+require 'darts/presenters'
+require 'darts/mappings'
 
 module Darts
   class CLI < Thor
@@ -15,17 +16,25 @@ MESSAGE
       super
     end
 
-    desc "into SOURCE_FILE", "Shows the tests that hit the given source file."
-    def into(source_file)
-      Query::TestsHittingSourceFile.new(source_file) do |test|
-        say test
-      end
+    desc "into SOURCE_FILE_PATH", "Shows the tests that hit the given source file."
+    def into(source_file_path)
+      present Presenters::TestsHittingSourceFile,
+        :source_file_path => source_file_path,
+        :mappings => Mappings.new
     end
 
     desc "mappings", "Shows the mappings that Darts has stored."
     def mappings
-      Darts.mappings.print { |line| say(line) }
+      present Presenters::Mappings,
+        :mappings => Mappings.new
+    end
+
+    private
+
+    def present(presenter, options)
+      presenter.new(options).present_on(self)
     end
 
   end
+
 end

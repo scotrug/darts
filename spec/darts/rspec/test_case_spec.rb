@@ -8,15 +8,6 @@ module Darts
       let(:mappings) { stub }
       before { Darts.stub(:mappings => mappings) }
 
-      describe "#store_coverage" do
-        let(:coverage) { stub }
-
-        it "delegates to the mappings" do
-          mappings.should_receive(:store_coverage_for_test_case).with(subject, coverage)
-          subject.store_coverage(coverage)
-        end
-      end
-
       describe "#eql?" do
         it "is true for another TestCase with the same path" do
           subject.should be_eql(stub(:path => subject.path))

@@ -14,10 +14,6 @@ module Darts
         "#{@path}:#{@line}"
       end
 
-      def store_coverage(coverage)
-        Darts.mappings.store_coverage_for_test_case(self, coverage)
-      end
-
       def eql?(other)
         @path == other.path
       end

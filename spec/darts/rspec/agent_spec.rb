@@ -3,7 +3,9 @@ require 'darts/rspec/agent'
 module Darts
   module RSpec
     describe Agent do
+      subject { Agent.new(mappings) }
       let(:example) { stub(:location => '/bar/bar/baz_spec:39') }
+      let(:mappings) { stub }
 
       describe "#before_each" do
         it "starts recording code coverage" do
@@ -21,19 +23,19 @@ module Darts
           Coverage.stub(:result => raw_coverage_result)
         end
 
-        it "creates a TestCase and stores the coverage" do
+        it "creates a TestCase and stores the coverage on the mappings" do
           test_case = stub(TestCase)
           TestCase.stub(:new).
             with(example.location).
             and_return(test_case)
-          test_case.should_receive(:store_coverage).with([source_file.path])
+          mappings.should_receive(:store_coverage).with(test_case, [source_file.path])
           subject.after_each example
         end
       end
 
       describe "#after_all" do
         it "tells the mappings to save" do
-          Darts.mappings.should_receive(:save)
+          mappings.should_receive(:save)
           subject.after_all
         end
       end

@@ -26,21 +26,21 @@ module Darts
 
     end
 
-    describe "#store_coverage_for_test_case" do
+    describe "#store_coverage" do
       let(:source_file_path) { 'path/to/source_file.rb' }
       let(:test_case) { stub.as_null_object }
       let(:coverage) { [ source_file_path ] }
 
       it "maps the path into a SourceFile object" do
         SourceFile.should_receive(:new).with(source_file_path)
-        subject.store_coverage_for_test_case(test_case, coverage)
+        subject.store_coverage(test_case, coverage)
       end
 
       let(:source_file) { stub(:outside_pwd? => false, :path => source_file_path) }
       before { SourceFile.stub(:new => source_file) }
 
       it "updates the state" do
-        subject.store_coverage_for_test_case(test_case, coverage)
+        subject.store_coverage(test_case, coverage)
         state.should == {
           test_case => [ source_file ]
         }
@@ -48,7 +48,7 @@ module Darts
 
       it "ignores files outside the working directory" do
         source_file.stub(:outside_pwd? => true)
-        subject.store_coverage_for_test_case(test_case, coverage)
+        subject.store_coverage(test_case, coverage)
         state.should == { 
           test_case => [] 
         }
@@ -63,7 +63,7 @@ module Darts
         end
 
         it "ignores the test case" do
-          subject.store_coverage_for_test_case(test_case, coverage)
+          subject.store_coverage(test_case, coverage)
           state.should == {
             test_case => []
           }
