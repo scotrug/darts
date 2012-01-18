@@ -4,8 +4,14 @@ Given /^two classes, each with corresponding RSpec specs:$/ do |table|
   end
 end
 
-Given /^Darts has watched the specs run twice$/ do
-  2.times { run_specs_with_darts }
+Given /^Darts has watched the specs run (once|twice)$/ do |count|
+  count.times { run_specs_with_darts }
+end
+
+Transform /^once|twice$/ do |count|
+  { 'once' => 1,
+    'twice' => 2 
+  }[count] || raise("I don't understand '#{count}")
 end
 
 When /^I ask Darts which specs touch "([^"]*)"$/ do |source_file|

@@ -8,10 +8,9 @@ Feature: Show mappings
     When I ask Darts to show the mappings
     Then I should see:
       """
-      lib/interesting.rb
-        spec/interesting_spec.rb:5
-      
-      lib/stable.rb
-        spec/stable_spec.rb:5
+      spec/interesting_spec.rb:5
+        lib/interesting.rb
+      spec/stable_spec.rb:5
+        lib/stable.rb
       """
 
