@@ -23,9 +23,8 @@ module Darts
 
     class TestsHittingSourceFile < Base
       def present_on(ui)
-        mappings.tests_for_source_files(source_files).each do |test|
-          ui.say test
-        end
+        tests = mappings.tests_for_source_files(source_files)
+        ui.say tests.join(" ")
       end
 
       private
