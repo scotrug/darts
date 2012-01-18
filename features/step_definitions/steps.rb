@@ -22,14 +22,6 @@ When /^I ask Darts to show the mappings$/ do
   darts :mappings
 end
 
-When /^I modify "([^"]*)"$/ do |filename|
-  touch(filename)
-end
-
-When /^I ask Darts which specs I should run$/ do
-  darts :needed
-end
-
 Then /^I should be given this list:$/ do |table|
   output_from_darts.split("\n").should == table.raw.flatten
 end
