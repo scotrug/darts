@@ -33,10 +33,10 @@ module Darts
         end
       end
 
-      describe "#after_all" do
+      describe "#at_exit" do
         it "tells the mappings to save" do
           mappings.should_receive(:save)
-          subject.after_all
+          subject.at_exit
         end
       end
 

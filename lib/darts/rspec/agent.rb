@@ -18,7 +18,7 @@ module Darts
         @mappings.store_coverage(test_case, coverage_result)
       end
 
-      def after_all
+      def at_exit
         @mappings.save
       end
 
