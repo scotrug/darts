@@ -1,3 +1,8 @@
+# Warning - Alpha Software
+
+The state of this code is currently prototype. We think it works, but it's very slow. We'd love contributions from people who'd like to help.
+
+
 # Darts :: Dynamic Analysis from Ruby Tests
 
 When you use refactoring tools in curly-bracketed languages, the tools use *static analysis* to answer questions like:
@@ -35,6 +40,3 @@ In your spec_helper, do this:
 
 That will install darts' hooks to watch your code as the specs run.
 
-# Big Warning
-
-The state of this code is currently prototype. We think it works, but it's very slow. We'd love contributions from people who'd like to help.
