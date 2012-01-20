@@ -21,11 +21,11 @@ covers it, but which one? Darts can tell you.
 
 Query darts from the command line, like this:
 
-    darts <filename>
+    darts into <filename>
 
 That will return a list of examples you need to run. So you can chain this with the `rspec` command, like this:
 
-    rspec `darts <filename>`
+    rspec `darts into <filename>`
 
 ### RSpec
 
@@ -35,3 +35,6 @@ In your spec_helper, do this:
 
 That will install darts' hooks to watch your code as the specs run.
 
+# Big Warning
+
+The state of this code is currently prototype. We think it works, but it's very slow. We'd love contributions from people who'd like to help.
